@@ -1,0 +1,68 @@
+23/11
+train on 117 samples
+param_grid = {
+    'n_epochs': [1000],
+    'lr_all': [0.0001],
+    'reg_all': np.linspace(0.000001,0.2,100)
+} 
+cv=5
+algorithms = [SVD]
+n_jobs=2
+
+{'rmse': {'n_epochs': 1000, 'lr_all': 0.0001, 'reg_all': 0.030303878787878793}}
+{'rmse': 1.0936845588856172}
+
+
+
+train on 1176 samples
+param_grid = {
+    'n_epochs': [100],
+    'lr_all': [0.001],
+    'reg_all': np.linspace(0.000001,0.2,100)
+} 
+cv=5
+algorithms = [SVD]
+n_jobs=2 
+{'rmse': {'n_epochs': 100, 'lr_all': 0.001, 'reg_all': 0.022223111111111114}}
+{'rmse': 1.0948847947952598}
+
+
+train on 11769 samples
+param_grid = { 
+    'n_epochs': [100],
+    'lr_all': [0.001],
+    'reg_all': np.linspace(0.001,0.1,50)
+} 
+cv=5
+algorithms = [SVD]
+n_jobs=2
+{'rmse': {'n_epochs': 100, 'lr_all': 0.001, 'reg_all': 0.035346938775510206}}
+{'rmse': 1.061519251482322}
+
+
+train on 117695 samples
+param_grid = {
+    'n_epochs': [100],
+    'lr_all': [0.001],
+    'reg_all': np.linspace(0.01,0.1,50)
+} 
+cv=5
+algorithms = [SVD]
+[Parallel(n_jobs=2)]: Done 250 out of 250 | elapsed:  7.5min finished
+{'rmse': {'n_epochs': 100, 'lr_all': 0.001, 'reg_all': 0.06326530612244897}}
+{'rmse': 1.0598528588129161}
+
+
+train on 1176925 samples (full)
+param_grid = {
+    'n_epochs': [100],
+    'lr_all': [0.001],
+    'reg_all': [0.06326530612244897]
+} 
+cv=6
+{'rmse': {'n_epochs': 100, 'lr_all': 0.001, 'reg_all': 0.06326530612244897}}
+{'rmse': 0.9952646142815077}
+
+
+SlopeOne 
+RMSE 1.279 (aicrowd)

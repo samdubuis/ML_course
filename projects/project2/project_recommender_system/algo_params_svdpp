@@ -1,0 +1,38 @@
+26/11
+train on 117 samples
+param_grid = {
+    'n_epochs': [1000],
+    'lr_all': [0.0001],
+    'reg_all': np.linspace(0.000001,0.2,100)
+} 
+cv=5
+algorithms = [SVDpp]
+n_jobs=2
+{'rmse': {'n_epochs': 1000, 'lr_all': 0.0001, 'reg_all': 0.11111155555555556}}
+{'rmse': 1.149359181960016}
+
+train on 1176 samples
+param_grid = {
+    'n_epochs': [100],
+    'lr_all': [0.001],
+    'reg_all': np.linspace(0.000001,0.2,100)
+} 
+cv=5
+algorithms = [SVDpp]
+n_jobs=2 
+{'rmse': {'n_epochs': 100, 'lr_all': 0.001, 'reg_all': 0.1858586565656566}}
+{'rmse': 1.0881934968306308}
+
+train on 11769 samples
+param_grid = { 
+    'n_epochs': [100],
+    'lr_all': [0.001],
+    'reg_all': np.linspace(0.001,0.4,50)
+} 
+cv=5
+algorithms = [SVDpp]
+n_jobs=2
+{'rmse': {'n_epochs': 100, 'lr_all': 0.001, 'reg_all': 0.18014285714285713}}
+{'rmse': 1.078303450316732}
+
+
