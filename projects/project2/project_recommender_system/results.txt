@@ -51,3 +51,23 @@ Tenth of data
 Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.04}}
 Best score : {'rmse': 1.017555099479656}
 
+
+2019-11-28 10:29:19.081591
+n_factors : [5, 20]
+n_epochs : [5, 20]
+learning rate lr_all : [0.002, 0.003, 0.004]
+regularization term rg_all : [0.03, 0.04, 0.05]
+Full data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.03}}
+Best score : {'rmse': 1.001200181916232}
+
+
+2019-11-28 15:10:06.376134
+n_factors : [5, 10, 20]
+n_epochs : [5, 10, 20, 30]
+learning rate lr_all : [0.002, 0.001]
+regularization term rg_all : [0.02, 0.03, 0.04]
+Quarter of data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.02}}
+Best score : {'rmse': 1.0092104554037962}
+
