@@ -125,7 +125,7 @@ print("FITTING OF DATA ON BEST ALGO")
 algo.fit(data.build_full_trainset()) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
 
 dump_name = "dump/dump_SVD_{}".format(time.date)
-dump.dump(dump_name, algo, verbose=1)
+dump.dump(dump_name, algo=algo, verbose=1)
 
 array = np.ones((df2.shape[0],1))
 change_five=0
