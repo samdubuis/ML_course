@@ -8,3 +8,46 @@ reg_all : [0.065, 0.007, 0.0075, 0.008]
 Tenth of dataBest param : {'rmse': {'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.065}}
 Best score : {'rmse': 1.0208405192583954}
 
+
+n_epochs : [20, 100]
+lr_all : [0.003, 0.004, 0.005]
+reg_all : [0.06, 0.08, 0.1]
+Tenth of data 
+Best param : {'rmse': {'n_factors': 20, 'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.06}}
+Best score : {'rmse': 1.0181108789460622}
+
+
+n_factors : [20, 50, 100]
+n_epochs : [20, 100]
+learning rate lr_all : [0.001, 0.002, 0.003, 0.004, 0.005]
+regularization term rg_all : [0.05, 0.06, 0.07, 0.08, 0.09, 0.1]
+Quarter of data 
+Best param : {'rmse': {'n_factors': 20, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.05}}
+Best score : {'rmse': 1.0097389170289468}
+
+
+n_factors : [20]
+n_epochs : [20]
+learning rate lr_all : [0.002]
+regularization term rg_all : [0.05]
+Full data 
+Best param : {'rmse': {'n_factors': 20, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.05}}
+Best score : {'rmse': 1.0013658628794855}
+
+
+2019-11-27 12:40:47.067812
+n_factors : [5, 20, 50]
+n_epochs : [5, 20, 50]
+learning rate lr_all : [0.001, 0.002, 0.003]
+regularization term rg_all : [0.04, 0.05, 0.06]
+Quarter of data 
+
+2019-11-27 12:42:28.766688
+n_factors : [5, 20, 50]
+n_epochs : [5, 20, 50]
+learning rate lr_all : [0.001, 0.002, 0.003]
+regularization term rg_all : [0.04, 0.05, 0.06]
+Tenth of data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.04}}
+Best score : {'rmse': 1.017555099479656}
+

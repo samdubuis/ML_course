@@ -1,3 +1,6 @@
+import datetime
+time = datetime.datetime.now()
+print("launched at : ", time)
 import pandas as pd
 import numpy as np
 
@@ -31,31 +34,39 @@ df.Prediction.value_counts().plot.bar()
 
 
 df_tenth, test = train_test_split(df, test_size=0.9, random_state=1)
+df_quarter, test = train_test_split(df, test_size=0.75, random_state=1)
 
 
 reader = Reader(rating_scale=(1,5)) 
 data = Dataset.load_from_df(df[["user","item","Prediction"]], reader)
 data_tenth = Dataset.load_from_df(df_tenth[["user","item","Prediction"]], reader)
+data_quarter = Dataset.load_from_df(df_quarter[["user","item","Prediction"]], reader)
+
 
 
 del df #freeing memory
 del df_tenth
+del df_quarter
 print("PANDAS DONE, DATA AND READER ARE READY")
 print("")
 
 ########
 
+n_factors = list(map(int, input('Enter values for n_factors separated by , without space: ').split(',')))
 n_epochs = list(map(int, input('Enter values for n_epochs separated by , without space: ').split(',')))
-lr_all = list(map(float, input('Enter values for lr_all separated by , without space: ').split(',')))
-reg_all = list(map(float, input('Enter values for reg_all separated by , without space: ').split(',')))
+lr_all = list(map(float, input('Enter values for learning rate lr_all separated by , without space: ').split(',')))
+reg_all = list(map(float, input('Enter values for regularization term rg_all separated by , without space: ').split(',')))
 
 f=open("results.txt", "a")
 f.write("\n")
+f.write("{}\n".format(time))
+f.write("n_factors : {}\n" .format(n_factors))
 f.write("n_epochs : {}\n" .format(n_epochs))
-f.write("lr_all : {}\n" .format(lr_all))
-f.write("reg_all : {}\n" .format(reg_all))
+f.write("learning rate lr_all : {}\n" .format(lr_all))
+f.write("regularization term rg_all : {}\n" .format(reg_all))
 
 param_grid = {
+    'n_factors' : n_factors,
     'n_epochs': n_epochs,
     'lr_all': lr_all,
     'reg_all': reg_all
@@ -81,14 +92,17 @@ print("Total number of tasks to compute : ",tasks)
 print("")
 
 print("BEGINNING OF FITTING GRIDSEARCH")
-var = int(input("Full data (0) or tenth of the data (1) : "))
+var = int(input("Full data (0), quarter of data (1), tenth of the data (2) : "))
 print("")
 
 if var == 0:
-    f.write("Full data")
+    f.write("Full data \n")
     gs.fit(data) # les calculs se font actuellement ici 
 if var == 1:
-    f.write("Tenth of data")
+    f.write("Quarter of data \n")
+    gs.fit(data_quarter)
+if var == 2:
+    f.write("Tenth of data \n")
     gs.fit(data_tenth)
 
 
@@ -140,7 +154,8 @@ print("Changement de cinq : ", change_five)
 df2.Prediction = array
 df2 = df2.drop(columns=["user", "item"])
 
-df2.to_csv("Datasets/submission.csv", index=False)
+out = "Datasets/submission_{}.csv" .format(time)
+df2.to_csv(out, index=False)
 print("")
 
 print("EVERYTHING DONE")
