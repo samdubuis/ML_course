@@ -124,7 +124,7 @@ algo = gs.best_estimator["rmse"] #choix de l'algo selon l'erreur, touuuut inclus
 print("FITTING OF DATA ON BEST ALGO")
 algo.fit(data.build_full_trainset()) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
 
-dump_name = "dump/dump_SVD_{}".format(time.date)
+dump_name = "dump/dump_SVD_{}".format(time.date())
 dump.dump(dump_name, algo, verbose=1)
 
 array = np.ones((df2.shape[0],1))
@@ -133,7 +133,7 @@ change_zero=0
 
 print("ROUNDING")
 for i in df2.iterrows():
-    tmp = algo.estimate(int(i[1][2]), int(i[1][3]))
+    tmp = algo.estimate(int(i[1][2])-1, int(i[1][3])-1)
     tmp = round(tmp)
     if int(tmp)>5:
       tmp=5;

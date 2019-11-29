@@ -71,3 +71,33 @@ Quarter of data
 Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.02}}
 Best score : {'rmse': 1.0092104554037962}
 
+
+2019-11-29 09:31:45.670809
+n_factors : [5]
+n_epochs : [20]
+learning rate lr_all : [0.005]
+regularization term rg_all : [0.02]
+Full data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
+Best score : {'rmse': 1.0033147387239718}
+
+
+2019-11-29 09:36:16.131133
+n_factors : [5]
+n_epochs : [20]
+learning rate lr_all : [0.005]
+regularization term rg_all : [0.02]
+Full data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
+Best score : {'rmse': 1.0013630004925884}
+
+
+2019-11-29 09:46:20.741976
+n_factors : [5]
+n_epochs : [20]
+learning rate lr_all : [0.005]
+regularization term rg_all : [0.02]
+Full data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
+Best score : {'rmse': 1.0045527306662283}
+
