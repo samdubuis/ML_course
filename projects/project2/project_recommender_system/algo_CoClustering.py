@@ -44,9 +44,9 @@ f.write("n_cltr_i : {}\n" .format(n_cltr_i))
 f.write("n_cltr_u : {}\n" .format(n_cltr_u))
 
 param_grid = {
-    'n_cltr_u' : [3, 5],
-    'n_cltr_i' : [3, 5], 
-    'n_epochs': [50, 100]
+    'n_cltr_u' : n_cltr_u,
+    'n_cltr_i' : n_cltr_i, 
+    'n_epochs': n_epochs
 } 
 cv=5
 algorithm = CoClustering
