@@ -101,3 +101,13 @@ Full data
 Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
 Best score : {'rmse': 1.0045527306662283}
 
+
+SVD 2019-11-30 10:30:01.466986
+n_factors : [5]
+n_epochs : [20]
+learning rate lr_all : [0.03]
+regularization term rg_all : [0.02]
+Full data 
+Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.03, 'reg_all': 0.02}}
+Best score : {'rmse': 1.021324763503158}
+
