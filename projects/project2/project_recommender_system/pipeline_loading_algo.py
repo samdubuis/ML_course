@@ -55,6 +55,8 @@ print("")
 print("BLENDING EACH ALGO INTO AN ARRAY")
 
 tmp = np.concatenate((array_SVD, array_KNN, array_NMF, array_SlopeOne, array_CoClustering), axis=1 )
+tmp[np.where(tmp>5)]=5
+tmp[np.where(tmp<1)]=1
 final_array = np.mean(tmp, axis=1)
 final_array = np.rint(final_array)
 final_array[final_array>5]=5
