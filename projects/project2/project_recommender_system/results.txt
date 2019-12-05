@@ -1,7 +1,3 @@
-
-n_epochs : [20, 50]lr_all : [0.001, 0.003, 0.005]reg_all : [0.065, 0.07, 0.075]Tenth of data
-n_epochs : [20, 50]lr_all : [0.001, 0.003, 0.005]reg_all : [0.065, 0.07, 0.075]Tenth of dataBest param : {'rmse': {'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.07}}Best score : {'rmse': 1.0211386318698716}
-
 n_epochs : [20, 50]
 lr_all : [0.001, 0.003, 0.005, 0.007]
 reg_all : [0.065, 0.007, 0.0075, 0.008]
@@ -166,4 +162,85 @@ n_epochs : [50, 100, 200]
 Full data 
 Best param : {'rmse': {'n_factors': 150, 'n_epochs': 200}}
 Best score : {'rmse': 0.9932267275172318}
+
+
+
+KNN basic 2019-12-03 08:45:40.221951
+k : [1, 3, 5, 10, 50]
+min_k : [1, 3, 10, 20]
+Full data 
+Best param : {'rmse': {'k': 50, 'min_k': 1}}
+Best score : {'rmse': 1.024430537721485}
+
+
+KNN basic 2019-12-03 13:53:38.073396
+k : [50, 100]
+min_k : [1, 2]
+Full data 
+Best param : {'rmse': {'k': 100, 'min_k': 1}}
+Best score : {'rmse': 1.018123754044076}
+
+
+NMF 2019-12-03 16:50:55.692218
+n_factors : [150, 200]
+n_epochs : [500]
+Full data 
+
+CoClustering 2019-12-03 17:16:00.740078
+n_epochs : [20, 50]
+n_cltr_i : [1, 3, 10]
+n_cltr_u : [1, 3, 10]
+Full data 
+
+CoClustering 2019-12-03 17:31:18.704787
+n_epochs : [20, 50]
+n_cltr_i : [3, 10]
+n_cltr_u : [3, 10]
+Full data 
+Best param : {'rmse': {'n_cltr_u': 3, 'n_cltr_i': 10, 'n_epochs': 20}}
+Best score : {'rmse': 1.0042353601706453}
+
+
+CoClustering 2019-12-03 18:54:06.813441
+n_epochs : [5, 20]
+n_cltr_i : [1, 3, 5]
+n_cltr_u : [5, 15]
+Full data 
+Best param : {'rmse': {'n_cltr_u': 5, 'n_cltr_i': 1, 'n_epochs': 5}}
+Best score : {'rmse': 1.0058576426660664}
+
+
+CoClustering 2019-12-04 08:38:19.803248
+n_epochs : [5, 10, 20, 50, 100]
+n_cltr_i : [1, 3, 5, 10, 20, 50]
+n_cltr_u : [1, 3, 5, 10, 20, 50]
+Full data 
+Best param : {'rmse': {'n_cltr_u': 3, 'n_cltr_i': 50, 'n_epochs': 50}}
+Best score : {'rmse': 1.0028849550988101}
+
+
+CoClustering 2019-12-04 15:07:37.170153
+n_epochs : [50, 100, 200]
+n_cltr_i : [50, 100]
+n_cltr_u : [3]
+Full data 
+Best param : {'rmse': {'n_cltr_u': 3, 'n_cltr_i': 100, 'n_epochs': 200}}
+Best score : {'rmse': 1.0028594347403825}
+
+
+NMF 2019-12-04 15:10:46.524375
+n_factors : [150, 200]
+n_epochs : [1000]
+Full data 
+
+NMF 2019-12-04 16:14:21.803276
+n_factors : [150, 200]
+n_epochs : [200]
+
+NMF 2019-12-04 16:22:05.021689
+n_factors : [150, 200]
+n_epochs : [200]
+Full data 
+Best param : {'rmse': {'n_factors': 200, 'n_epochs': 200}}
+Best score : {'rmse': 0.9909610773117847}
 

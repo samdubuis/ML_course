@@ -32,8 +32,8 @@ print("PANDAS DONE, DATA AND READER ARE READY")
 print("")
 
 n_epochs = list(map(int, input('Enter values for n_epochs separated by , without space: ').split(',')))
-n_cltr_i = list(map(float, input('Enter values for n_cltr_i separated by , without space: ').split(',')))
-n_cltr_u = list(map(float, input('Enter values for n_cltr_u separated by , without space: ').split(',')))
+n_cltr_i = list(map(int, input('Enter values for n_cltr_i separated by , without space: ').split(',')))
+n_cltr_u = list(map(int, input('Enter values for n_cltr_u separated by , without space: ').split(',')))
 
 
 f=open("results.txt", "a")
