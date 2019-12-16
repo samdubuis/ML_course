@@ -1,246 +1,75 @@
-n_epochs : [20, 50]
-lr_all : [0.001, 0.003, 0.005, 0.007]
-reg_all : [0.065, 0.007, 0.0075, 0.008]
-Tenth of dataBest param : {'rmse': {'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.065}}
-Best score : {'rmse': 1.0208405192583954}
+
+KNN means 2019-12-15 22:04:57.338763
+{'k': [40, 70, 100], 'min_k': [1, 3, 5], 'sim_options': {'user_based': [True, False], 'name': ['msd', 'pearson_baseline']}}Best param : {'rmse': {'k': 70, 'min_k': 5, 'sim_options': {'user_based': False, 'name': 'msd'}}}
+Best score : {'rmse': 1.0016975314560714}
 
 
-n_epochs : [20, 100]
-lr_all : [0.003, 0.004, 0.005]
-reg_all : [0.06, 0.08, 0.1]
-Tenth of data 
-Best param : {'rmse': {'n_factors': 20, 'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.06}}
-Best score : {'rmse': 1.0181108789460622}
+Baseline Only 2019-12-16 15:16:45.837408
+{'bsl_options': {'method': ['als', 'sgd']}}Best param : {'rmse': {'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 1.0024824435019637}
 
 
-n_factors : [20, 50, 100]
-n_epochs : [20, 100]
-learning rate lr_all : [0.001, 0.002, 0.003, 0.004, 0.005]
-regularization term rg_all : [0.05, 0.06, 0.07, 0.08, 0.09, 0.1]
-Quarter of data 
-Best param : {'rmse': {'n_factors': 20, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.05}}
-Best score : {'rmse': 1.0097389170289468}
+KNN basic 2019-12-16 15:16:45.837408
+{'k': [100], 'min_k': [3, 5], 'sim_options': {'user_based': [True, False]}}Best param : {'rmse': {'k': 100, 'min_k': 3, 'sim_options': {'user_based': True}}}
+Best score : {'rmse': 1.0277223364854144}
 
 
-n_factors : [20]
-n_epochs : [20]
-learning rate lr_all : [0.002]
-regularization term rg_all : [0.05]
-Full data 
-Best param : {'rmse': {'n_factors': 20, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.05}}
-Best score : {'rmse': 1.0013658628794855}
+KNN means 2019-12-16 15:16:45.837408
+{'k': [70], 'min_k': [5], 'sim_options': {'user_based': [False]}}Best param : {'rmse': {'k': 70, 'min_k': 5, 'sim_options': {'user_based': False}}}
+Best score : {'rmse': 1.0015839373546864}
 
 
-2019-11-27 12:40:47.067812
-n_factors : [5, 20, 50]
-n_epochs : [5, 20, 50]
-learning rate lr_all : [0.001, 0.002, 0.003]
-regularization term rg_all : [0.04, 0.05, 0.06]
-Quarter of data 
-
-2019-11-27 12:42:28.766688
-n_factors : [5, 20, 50]
-n_epochs : [5, 20, 50]
-learning rate lr_all : [0.001, 0.002, 0.003]
-regularization term rg_all : [0.04, 0.05, 0.06]
-Tenth of data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.003, 'reg_all': 0.04}}
-Best score : {'rmse': 1.017555099479656}
+SVD 2019-12-16 15:16:45.837408
+{'n_factors': [200, 300], 'n_epochs': [200], 'lr_all': [0.004], 'reg_all': [0.1]}Best param : {'rmse': {'n_factors': 300, 'n_epochs': 200, 'lr_all': 0.004, 'reg_all': 0.1}}
+Best score : {'rmse': 1.0003702196552438}
 
 
-2019-11-28 10:29:19.081591
-n_factors : [5, 20]
-n_epochs : [5, 20]
-learning rate lr_all : [0.002, 0.003, 0.004]
-regularization term rg_all : [0.03, 0.04, 0.05]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.03}}
-Best score : {'rmse': 1.001200181916232}
+NMF 2019-12-16 15:16:45.837408
+{'n_factors': [100, 200], 'n_epochs': [100]}Best param : {'rmse': {'n_factors': 200, 'n_epochs': 100}}
+Best score : {'rmse': 1.0087546269079155}
 
 
-2019-11-28 15:10:06.376134
-n_factors : [5, 10, 20]
-n_epochs : [5, 10, 20, 30]
-learning rate lr_all : [0.002, 0.001]
-regularization term rg_all : [0.02, 0.03, 0.04]
-Quarter of data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.002, 'reg_all': 0.02}}
-Best score : {'rmse': 1.0092104554037962}
+KNN Baseline 2019-12-16 16:42:22.544268
+{'k': [40], 'min_k': [5], 'sim_options': {'user_based': [False]}, 'bsl_options': {'method': ['als']}}Best param : {'rmse': {'k': 40, 'min_k': 5, 'sim_options': {'user_based': False}, 'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 1.002239105472601}
 
 
-2019-11-29 09:31:45.670809
-n_factors : [5]
-n_epochs : [20]
-learning rate lr_all : [0.005]
-regularization term rg_all : [0.02]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
-Best score : {'rmse': 1.0033147387239718}
+COCLUSTERING 2019-12-16 16:42:22.544268
+{'n_cltr_u': [1, 3], 'n_cltr_i': [1, 3], 'n_epochs': [100]}Best param : {'rmse': {'n_cltr_u': 1, 'n_cltr_i': 1, 'n_epochs': 100}}
+Best score : {'rmse': 1.0109372026501686}
 
 
-2019-11-29 09:36:16.131133
-n_factors : [5]
-n_epochs : [20]
-learning rate lr_all : [0.005]
-regularization term rg_all : [0.02]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
-Best score : {'rmse': 1.0013630004925884}
+Baseline Only 2019-12-16 17:49:20.015925
+{'bsl_options': {'method': ['als', 'sgd']}}Best param : {'rmse': {'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 1.002559177883703}
 
 
-2019-11-29 09:46:20.741976
-n_factors : [5]
-n_epochs : [20]
-learning rate lr_all : [0.005]
-regularization term rg_all : [0.02]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.005, 'reg_all': 0.02}}
-Best score : {'rmse': 1.0045527306662283}
+KNN basic 2019-12-16 17:49:20.015925
+{'k': [100], 'min_k': [3], 'sim_options': {'user_based': [True, False]}}Best param : {'rmse': {'k': 100, 'min_k': 3, 'sim_options': {'user_based': True}}}
+Best score : {'rmse': 1.0274626670726137}
 
 
-SVD 2019-11-30 10:30:01.466986
-n_factors : [5]
-n_epochs : [20]
-learning rate lr_all : [0.03]
-regularization term rg_all : [0.02]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 20, 'lr_all': 0.03, 'reg_all': 0.02}}
-Best score : {'rmse': 1.021324763503158}
+KNN means 2019-12-16 17:49:20.015925
+{'k': [70], 'min_k': [5], 'sim_options': {'user_based': [False]}}Best param : {'rmse': {'k': 70, 'min_k': 5, 'sim_options': {'user_based': False}}}
+Best score : {'rmse': 1.0016814111312138}
 
 
-SVD 2019-12-01 18:09:26.517942
-n_factors : [5, 10, 20]
-n_epochs : [10, 20, 50]
-learning rate lr_all : [0.001, 0.002, 0.003, 0.005, 0.01]
-regularization term rg_all : [0.01, 0.02, 0.03, 0.05, 0.1]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 50, 'lr_all': 0.005, 'reg_all': 0.05}}
-Best score : {'rmse': 0.9949928002130658}
+KNN Baseline 2019-12-16 17:49:20.015925
+{'k': [40], 'min_k': [5], 'sim_options': {'user_based': [False]}, 'bsl_options': {'method': ['als']}}Best param : {'rmse': {'k': 40, 'min_k': 5, 'sim_options': {'user_based': False}, 'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 1.001717683799965}
 
 
-SVD 2019-12-02 10:18:02.549368
-n_factors : [5, 20, 100]
-n_epochs : [50, 100]
-learning rate lr_all : [0.004, 0.005, 0.006, 0.007]
-regularization term rg_all : [0.04, 0.05, 0.06]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 100, 'lr_all': 0.004, 'reg_all': 0.06}}
-Best score : {'rmse': 0.9918512218393506}
+SVD 2019-12-16 17:49:20.015925
+{'n_factors': [300], 'n_epochs': [300], 'lr_all': [0.004], 'reg_all': [0.1]}Best param : {'rmse': {'n_factors': 300, 'n_epochs': 300, 'lr_all': 0.004, 'reg_all': 0.1}}
+Best score : {'rmse': 1.0013720261422732}
 
 
-SVD 2019-12-02 13:47:12.291748
-n_factors : [5]
-n_epochs : [200]
-learning rate lr_all : [0.004]
-regularization term rg_all : [0.06, 0.07]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 200, 'lr_all': 0.004, 'reg_all': 0.07}}
-Best score : {'rmse': 0.9902137894354419}
+NMF 2019-12-16 17:49:20.015925
+{'n_factors': [200], 'n_epochs': [200]}Best param : {'rmse': {'n_factors': 200, 'n_epochs': 200}}
+Best score : {'rmse': 1.0148705379613272}
 
 
-SVD 2019-12-02 13:58:35.303185
-n_factors : [5]
-n_epochs : [1000]
-learning rate lr_all : [0.004]
-regularization term rg_all : [0.07]
-Full data 
-Best param : {'rmse': {'n_factors': 5, 'n_epochs': 1000, 'lr_all': 0.004, 'reg_all': 0.07}}
-Best score : {'rmse': 0.9881873739643539}
-
-
-NMF 2019-12-02 16:36:54.527012
-n_factors : [5, 20, 100]
-n_epochs : [20, 100]
-Full data 
-Best param : {'rmse': {'n_factors': 100, 'n_epochs': 100}}
-Best score : {'rmse': 0.9999957637911677}
-
-
-NMF 2019-12-02 17:43:35.213400
-n_factors : [5, 100, 150]
-n_epochs : [50, 100, 200]
-Full data 
-Best param : {'rmse': {'n_factors': 150, 'n_epochs': 200}}
-Best score : {'rmse': 0.9932267275172318}
-
-
-
-KNN basic 2019-12-03 08:45:40.221951
-k : [1, 3, 5, 10, 50]
-min_k : [1, 3, 10, 20]
-Full data 
-Best param : {'rmse': {'k': 50, 'min_k': 1}}
-Best score : {'rmse': 1.024430537721485}
-
-
-KNN basic 2019-12-03 13:53:38.073396
-k : [50, 100]
-min_k : [1, 2]
-Full data 
-Best param : {'rmse': {'k': 100, 'min_k': 1}}
-Best score : {'rmse': 1.018123754044076}
-
-
-NMF 2019-12-03 16:50:55.692218
-n_factors : [150, 200]
-n_epochs : [500]
-Full data 
-
-CoClustering 2019-12-03 17:16:00.740078
-n_epochs : [20, 50]
-n_cltr_i : [1, 3, 10]
-n_cltr_u : [1, 3, 10]
-Full data 
-
-CoClustering 2019-12-03 17:31:18.704787
-n_epochs : [20, 50]
-n_cltr_i : [3, 10]
-n_cltr_u : [3, 10]
-Full data 
-Best param : {'rmse': {'n_cltr_u': 3, 'n_cltr_i': 10, 'n_epochs': 20}}
-Best score : {'rmse': 1.0042353601706453}
-
-
-CoClustering 2019-12-03 18:54:06.813441
-n_epochs : [5, 20]
-n_cltr_i : [1, 3, 5]
-n_cltr_u : [5, 15]
-Full data 
-Best param : {'rmse': {'n_cltr_u': 5, 'n_cltr_i': 1, 'n_epochs': 5}}
-Best score : {'rmse': 1.0058576426660664}
-
-
-CoClustering 2019-12-04 08:38:19.803248
-n_epochs : [5, 10, 20, 50, 100]
-n_cltr_i : [1, 3, 5, 10, 20, 50]
-n_cltr_u : [1, 3, 5, 10, 20, 50]
-Full data 
-Best param : {'rmse': {'n_cltr_u': 3, 'n_cltr_i': 50, 'n_epochs': 50}}
-Best score : {'rmse': 1.0028849550988101}
-
-
-CoClustering 2019-12-04 15:07:37.170153
-n_epochs : [50, 100, 200]
-n_cltr_i : [50, 100]
-n_cltr_u : [3]
-Full data 
-Best param : {'rmse': {'n_cltr_u': 3, 'n_cltr_i': 100, 'n_epochs': 200}}
-Best score : {'rmse': 1.0028594347403825}
-
-
-NMF 2019-12-04 15:10:46.524375
-n_factors : [150, 200]
-n_epochs : [1000]
-Full data 
-
-NMF 2019-12-04 16:14:21.803276
-n_factors : [150, 200]
-n_epochs : [200]
-
-NMF 2019-12-04 16:22:05.021689
-n_factors : [150, 200]
-n_epochs : [200]
-Full data 
-Best param : {'rmse': {'n_factors': 200, 'n_epochs': 200}}
-Best score : {'rmse': 0.9909610773117847}
+COCLUSTERING 2019-12-16 17:49:20.015925
+{'n_cltr_u': [1], 'n_cltr_i': [1], 'n_epochs': [200]}Best param : {'rmse': {'n_cltr_u': 1, 'n_cltr_i': 1, 'n_epochs': 200}}
+Best score : {'rmse': 1.0110097849483346}
 
