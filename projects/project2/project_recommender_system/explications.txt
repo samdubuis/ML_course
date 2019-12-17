@@ -1,0 +1,67 @@
+Pour chaque algo une gridsearch a été faite:
+cross validation de 5 puis 3 pour accélerer les choses
+travail en parallélisation autant que possible en faisant tourner un "job" (job = un de chaque possibilité de paramètres sur une cross validation), sauf pour les knn qui faisait des segfaults lorsque plus que deux jobs tournait en meme temps
+
+Normal predictor pas utilisé car fais des choix random et donc c'est comme du "bruit" parmis nos résultats
+
+Baseline only :
+- tester sur 
+-- bsl_options : sgd ou als
+- meilleur paramètres : als
+- rmse : 1.0025
+
+KNN basic :
+- particulièrement long et retourne le plus gros fichier de dump, env 10x plus gros que les autres
+- tester sur
+-- k : 20,40,70,100
+-- min_k : 1,3,5
+-- sim_options : user_based : true, false
+- meilleur paramètres : k 100, min_k 3, user_based true
+- rmse : 1.0274 
+
+KNN means :
+- tester sur
+-- k : 20,40,70,100
+-- min_k : 1,3,5
+-- sim_options : user_based : true, false
+- meilleur paramètres : k 70, min_k 5, user_based false
+- rmse : 1.0017
+
+KNN baseline :
+- tester sur
+-- k : 20,40,70,100
+-- min_k : 1,3,5
+-- sim_options : user_based : true, false
+		 bsl_options : als, sgd
+- meilleur paramètres : k 40, min_k 5, user_based false, bsl_options : als
+- rmse : 1.0017
+
+SVD :
+- tester sur 
+-- n_factor : 50,100,200,300
+-- n_epochs : 50,100,200,300
+-- lr_all : 0.001,0.004,0.005,0.01,0.04,0.05,0.1
+-- reg_all : 0.01,0.04,0.05,0.1,0.4,0.5
+- meilleures paramètres : nfactor 300, nepochs 300, lr_all 0.004, reg_all 0.1
+- rmse : 1.0013
+
+NMF : 
+- tester sur 
+-- n_factor : 50,100,200,300
+-- n_epochs : 50,100,200,300
+- meilleures paramètres : nfactor 200, nepochs 200
+- rmse 1.0148
+
+Slopeone : 
+- pas de paramètres à définir
+
+Coclustering:
+- tester sur :
+-- n cltr u : 1,3,5,10
+-- n cltr_i : 1,3,5,10
+- best paramètres : n_cltr_u 1, n_cltr_i 1
+- rmse 1.0110
+
+dans tout ça, lorsque qu'il y avait possibilité de tester d'autres similarité cela a été fait mais la meilleure restait a chaque fois la MSD
+problèmes d'espace memoires de temps a autres donc chaque algo, après avoir gridsearch et fit sur le 70% de la dataset total, on le dump en local, supprime les var et on les reload tout a la fin pour les utiliser en suite
+aussi utilisation de google colab pour parraléliser au maximum
