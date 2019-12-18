@@ -9,13 +9,6 @@ from surprise import *
 from sklearn.linear_model import RidgeCV
 from sklearn.model_selection import train_test_split
 
-def standardize(x):
-    """Standardize the original data set."""
-    mean_x = np.mean(x)
-    x = x - mean_x
-    std_x = np.std(x)
-    x = x / std_x
-    return x, mean_x, std_x
 
 print("IMPORT DONE")
 
@@ -36,7 +29,6 @@ df_7, df_3 = train_test_split(df, train_size=0.7, random_state=1)
 tmp7 = Dataset.load_from_df(df_7[["user","item","Prediction"]], reader)
 tmp3 = Dataset.load_from_df(df_3[["user","item","Prediction"]], reader)
 data_train_7 = tmp7.build_full_trainset()
-data_train_3 = tmp3.build_full_trainset()
 del df
 print("DATA AND READER ARE READY")
 print("")
@@ -338,165 +330,165 @@ print("")
 # #-------------------------------------------------#-------------------------------------------------#-------------------------------------------------# ### SlopeOne
 
 # del gs
-print("FITTING OF ALL ALGOS IS DONE")
+# print("FITTING OF ALL ALGOS IS DONE")
 
-df2 = pd.read_csv("Datasets/sample_submission.csv")
+# df2 = pd.read_csv("Datasets/sample_submission.csv")
 
-df2[["user", "item"]] = df2.Id.str.split("_", expand=True)
+# df2[["user", "item"]] = df2.Id.str.split("_", expand=True)
 
-df2.user = df2.user.str.replace("r", "")
-df2.item = df2.item.str.replace("c", "")
+# df2.user = df2.user.str.replace("r", "")
+# df2.item = df2.item.str.replace("c", "")
 
-reader = Reader(rating_scale=(1,5)) 
-data_test = Dataset.load_from_df(df2[["user","item","Prediction"]], reader)
-test = data_test.build_full_trainset()
-test = test.build_testset()
-
-
-#-------------------------------------------------#-------------------------------------------------#-------------------------------------------------# ### SlopeOne
-print("TESTING OF THE ALGOS")
-_, algo_baseline_only = dump.load("dump/dump_BaselineOnly")
-_, algo_knn_basic = dump.load("dump/dump_KNN_basic")
-_, algo_knn_means  = dump.load("dump/dump_KNN_means")
-_, algo_knn_baseline = dump.load("dump/dump_KNN_baseline")
-_, algo_svd = dump.load("dump/dump_SVD")
-_, algo_nmf = dump.load("dump/dump_NMF")
-_, algo_slopeone = dump.load("dump/dump_slopeone")
-_, algo_coclustering = dump.load("dump/dump_CoClustering")
+# reader = Reader(rating_scale=(1,5)) 
+# data_test = Dataset.load_from_df(df2[["user","item","Prediction"]], reader)
+# test = data_test.construct_testset(data_test.raw_ratings)
 
 
-array_baseline_only = algo_baseline_only.test(test)
-array_baseline_only=list(map(lambda x:x[3], array_baseline_only))
-np.save("array_baseline_only", array_baseline_only)
-print("BASELINE TESTED", datetime.datetime.now())
-
-array_knn_basic = algo_knn_basic.test(test)
-array_knn_basic=list(map(lambda x:x[3], array_knn_basic))
-np.save("array_knn_basic", array_knn_basic)
-print("KNN BASIC TESTED", datetime.datetime.now())
-
-array_knn_means  = algo_knn_means.test(test)
-array_knn_means=list(map(lambda x:x[3], array_knn_means))
-np.save("array_knn_means", array_knn_means)
-print("KNN MEANS TESTED", datetime.datetime.now())
-
-array_knn_baseline = algo_knn_baseline.test(test)
-array_knn_baseline=list(map(lambda x:x[3], array_knn_baseline))
-np.save("array_knn_baseline", array_knn_baseline)
-print("KNN BASELINE TESTED", datetime.datetime.now())
-
-array_svd = algo_svd.test(test)
-array_svd=list(map(lambda x:x[3], array_svd))
-np.save("array_svd", array_svd)
-print("SVD TESTED", datetime.datetime.now())
-
-array_nmf = algo_nmf.test(test)
-array_nmf=list(map(lambda x:x[3], array_nmf))
-np.save("array_nmf", array_nmf)
-print("NMF TESTED", datetime.datetime.now())
-
-array_slopeone = algo_slopeone.test(test)
-array_slopeone=list(map(lambda x:x[3], array_slopeone))
-np.save("array_slopeone", array_slopeone)
-print("SLOPEONE TESTED", datetime.datetime.now())
-
-array_coclustering = algo_coclustering.test(test)
-array_coclustering=list(map(lambda x:x[3], array_coclustering))
-np.save("array_coclustering", array_coclustering)
-print("COCLUSTERING TESTED", datetime.datetime.now())
+# #-------------------------------------------------#-------------------------------------------------#-------------------------------------------------# ### SlopeOne
+# print("TESTING OF THE ALGOS")
+# _, algo_baseline_only = dump.load("dump/dump_BaselineOnly")
+# _, algo_knn_basic = dump.load("dump/dump_KNN_basic")
+# _, algo_knn_means  = dump.load("dump/dump_KNN_means")
+# _, algo_knn_baseline = dump.load("dump/dump_KNN_baseline")
+# _, algo_svd = dump.load("dump/dump_SVD")
+# _, algo_nmf = dump.load("dump/dump_NMF")
+# _, algo_slopeone = dump.load("dump/dump_slopeone")
+# _, algo_coclustering = dump.load("dump/dump_CoClustering")
 
 
+# array_baseline_only = algo_baseline_only.test(test)
+# array_baseline_only=list(map(lambda x:x[3], array_baseline_only))
+# np.save("array_baseline_only", array_baseline_only)
+# print("BASELINE TESTED", datetime.datetime.now())
 
-print("DONE")
-print("")
-print("BLENDING EACH ALGO INTO AN ARRAY")
-pred_array=np.vstack(
-    [array_baseline_only, 
-    array_knn_basic, 
-    array_knn_means,
-    array_knn_baseline, 
-    array_svd, 
-    array_nmf,
-    array_slopeone,
-    array_coclustering]
-    )
-pred_array[np.where(pred_array>5)]=5
-pred_array[np.where(pred_array<1)]=1
+# array_knn_basic = algo_knn_basic.test(test)
+# array_knn_basic=list(map(lambda x:x[3], array_knn_basic))
+# np.save("array_knn_basic", array_knn_basic)
+# print("KNN BASIC TESTED", datetime.datetime.now())
 
-np.save("pred_array", pred_array)
+# array_knn_means  = algo_knn_means.test(test)
+# array_knn_means=list(map(lambda x:x[3], array_knn_means))
+# np.save("array_knn_means", array_knn_means)
+# print("KNN MEANS TESTED", datetime.datetime.now())
 
-data_train_3 = data_train_3.build_testset()
+# array_knn_baseline = algo_knn_baseline.test(test)
+# array_knn_baseline=list(map(lambda x:x[3], array_knn_baseline))
+# np.save("array_knn_baseline", array_knn_baseline)
+# print("KNN BASELINE TESTED", datetime.datetime.now())
 
-array_baseline_only = algo_baseline_only.test(data_train_3)
-array_baseline_only=list(map(lambda x:x[3], array_baseline_only))
-np.save("array_baseline_only_2", array_baseline_only)
-print("BASELINE TESTED", datetime.datetime.now())
+# array_svd = algo_svd.test(test)
+# array_svd=list(map(lambda x:x[3], array_svd))
+# np.save("array_svd", array_svd)
+# print("SVD TESTED", datetime.datetime.now())
 
-array_knn_basic = algo_knn_basic.test(data_train_3)
-array_knn_basic=list(map(lambda x:x[3], array_knn_basic))
-np.save("array_knn_basic_2", array_knn_basic)
-print("KNN BASIC TESTED", datetime.datetime.now())
+# array_nmf = algo_nmf.test(test)
+# array_nmf=list(map(lambda x:x[3], array_nmf))
+# np.save("array_nmf", array_nmf)
+# print("NMF TESTED", datetime.datetime.now())
 
-array_knn_means  = algo_knn_means.test(data_train_3)
-array_knn_means=list(map(lambda x:x[3], array_knn_means))
-np.save("array_knn_means_2", array_knn_means)
-print("KNN MEANS TESTED", datetime.datetime.now())
+# array_slopeone = algo_slopeone.test(test)
+# array_slopeone=list(map(lambda x:x[3], array_slopeone))
+# np.save("array_slopeone", array_slopeone)
+# print("SLOPEONE TESTED", datetime.datetime.now())
 
-array_knn_baseline = algo_knn_baseline.test(data_train_3)
-array_knn_baseline=list(map(lambda x:x[3], array_knn_baseline))
-np.save("array_knn_baseline_2", array_knn_baseline)
-print("KNN BASELINE TESTED", datetime.datetime.now())
-
-array_svd = algo_svd.test(data_train_3)
-array_svd=list(map(lambda x:x[3], array_svd))
-np.save("array_svd_2", array_svd)
-print("SVD TESTED", datetime.datetime.now())
-
-array_nmf = algo_nmf.test(data_train_3)
-array_nmf=list(map(lambda x:x[3], array_nmf))
-np.save("array_nmf_2", array_nmf)
-print("NMF TESTED", datetime.datetime.now())
-
-array_slopeone = algo_slopeone.test(data_train_3)
-array_slopeone=list(map(lambda x:x[3], array_slopeone))
-np.save("array_slopeone_2", array_slopeone)
-print("SLOPEONE TESTED", datetime.datetime.now())
-
-array_coclustering = algo_coclustering.test(data_train_3)
-array_coclustering=list(map(lambda x:x[3], array_coclustering))
-np.save("array_coclustering_2", array_coclustering)
-print("COCLUSTERING TESTED", datetime.datetime.now())
+# array_coclustering = algo_coclustering.test(test)
+# array_coclustering=list(map(lambda x:x[3], array_coclustering))
+# np.save("array_coclustering", array_coclustering)
+# print("COCLUSTERING TESTED", datetime.datetime.now())
 
 
 
-X=np.vstack(
-    [array_baseline_only, 
-    array_knn_basic, 
-    array_knn_means,
-    array_knn_baseline, 
-    array_svd, 
-    array_nmf,
-    array_slopeone,
-    array_coclustering]
-    )
-X[np.where(X>5)]=5
-X[np.where(X<1)]=1
+# print("DONE")
+# print("")
+# print("BLENDING EACH ALGO INTO AN ARRAY")
+# pred_array=np.vstack(
+#     [array_baseline_only, 
+#     array_knn_basic, 
+#     array_knn_means,
+#     array_knn_baseline, 
+#     array_svd, 
+#     array_nmf,
+#     array_slopeone,
+#     array_coclustering]
+#     )
+# pred_array[np.where(pred_array>5)]=5
+# pred_array[np.where(pred_array<1)]=1
 
-np.save("X", X)
+# pred_array = pred_array.T
+# np.save("pred_array", pred_array)
+
+# data_train_3 = tmp3.construct_testset(tmp3.raw_ratings)
+
+# array_baseline_only = algo_baseline_only.test(data_train_3)
+# array_baseline_only=list(map(lambda x:x[3], array_baseline_only))
+# np.save("array_baseline_only_2", array_baseline_only)
+# print("BASELINE TESTED", datetime.datetime.now())
+
+# array_knn_basic = algo_knn_basic.test(data_train_3)
+# array_knn_basic=list(map(lambda x:x[3], array_knn_basic))
+# np.save("array_knn_basic_2", array_knn_basic)
+# print("KNN BASIC TESTED", datetime.datetime.now())
+
+# array_knn_means  = algo_knn_means.test(data_train_3)
+# array_knn_means=list(map(lambda x:x[3], array_knn_means))
+# np.save("array_knn_means_2", array_knn_means)
+# print("KNN MEANS TESTED", datetime.datetime.now())
+
+# array_knn_baseline = algo_knn_baseline.test(data_train_3)
+# array_knn_baseline=list(map(lambda x:x[3], array_knn_baseline))
+# np.save("array_knn_baseline_2", array_knn_baseline)
+# print("KNN BASELINE TESTED", datetime.datetime.now())
+
+# array_svd = algo_svd.test(data_train_3)
+# array_svd=list(map(lambda x:x[3], array_svd))
+# np.save("array_svd_2", array_svd)
+# print("SVD TESTED", datetime.datetime.now())
+
+# array_nmf = algo_nmf.test(data_train_3)
+# array_nmf=list(map(lambda x:x[3], array_nmf))
+# np.save("array_nmf_2", array_nmf)
+# print("NMF TESTED", datetime.datetime.now())
+
+# array_slopeone = algo_slopeone.test(data_train_3)
+# array_slopeone=list(map(lambda x:x[3], array_slopeone))
+# np.save("array_slopeone_2", array_slopeone)
+# print("SLOPEONE TESTED", datetime.datetime.now())
+
+# array_coclustering = algo_coclustering.test(data_train_3)
+# array_coclustering=list(map(lambda x:x[3], array_coclustering))
+# np.save("array_coclustering_2", array_coclustering)
+# print("COCLUSTERING TESTED", datetime.datetime.now())
 
 
 
+# X=np.vstack(
+#     [array_baseline_only, 
+#     array_knn_basic, 
+#     array_knn_means,
+#     array_knn_baseline, 
+#     array_svd, 
+#     array_nmf,
+#     array_slopeone,
+#     array_coclustering]
+#     )
+# X[np.where(X>5)]=5
+# X[np.where(X<1)]=1
 
+# X = X.T
+
+# np.save("X", X)
+
+##############################################################33
+print("FINAL RIDGE REGRESSION BEGIN")
 X = np.load("npy/X.npy")
 pred_array = np.load("npy/array_pred.npy")
 
 
-y=np.array(df_3.Prediction.values)
-clf=RidgeCV(alphas=np.linspace(10**-5,1,10),cv=10)
-X=standardize(X)[0]
+y=df_3.Prediction.values
+clf=RidgeCV(alphas=np.linspace(10**-5,1,10),cv=10,)
 clf=clf.fit(X,y)
 
-pred_array=standardize(pred_array)[0]
+print(clf.coef_)
 pred=clf.predict(pred_array)
 final_array=np.rint(pred)
 final_array[np.where(final_array>5)]=5
