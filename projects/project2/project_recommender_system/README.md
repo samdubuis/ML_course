@@ -9,14 +9,11 @@ In this repository you'll find a few folders.
 * Datasets contains the necessary .csv files used for training and testing and is also the output folder where the prediction csv file will appear
 * rapport which will contain the final report PDF that was written in Overleaf
 * npy is the folder of output where we saved our necessary numpy arrays 
+* notebooks contains all jupyter notebooks we used to work on the project before moving to the run.py script
 
-In the scripts folder, there are these python files :
-* implementations.py : contains the required implementations by the project of linear/ridge/logistic regression, etc...
-* def.py : external function we coded that would help us throughout the project, either for cross validation or display or anything
-* costs.py : file containing the code for costs computation
-* helpers.py and proj1_helpers.py : two files given at the beginning containing pre-made function useful for importing and displaying infos
-* project1.ipynb : the Jupyter Notebook where most tests where made
-* run.py : actual file that should be run and does the prediction
+Finally there are two files displayed at the root of the project and which are the two necessary files to run the code.
+* run.py is the main execution file, well commented which you can read to understand most of what was done
+* helpers.py simple python file which is imported by the run.py script and contains helper functions
 
 ## Execution 
 For this project we coded everything by using Python 3.
@@ -26,17 +23,12 @@ Get into the scripts/ folder and launch
 python3 run.py
 ```
 
-The input are in the data folder : train.csv and test.csv
+The input are in the Datasets folder : data_train.csv and sample_submission.csv
+The idea is to get in the code and add more parameters to each algo, so that when it gridsearches it can maybe attain better rmse than we did by letting it run a lot longer and on more efficiement machines.
 
-The code execute itself. We do a ridge regression on the training dataset, and a cross validation, with parameters as such :
-* K-Fold : 10
-* Degree : 12 up to this number to train and find the best one
-* Lambda : between 10^-15 and 10^-3 
-* Seed : 5 for randomness
-
-We have also previously seperated the data to train in 4 mini-sets following a specific variable, better explained in the report.
+We develop our machine learning model in two distinct layers. In the first place, we train a series of prediction algorithms and optimize the parameters of each one in order to minimise the RMSE of the predicted ratings over the test set. This part uses the library Surprise which is a a Python scikit building and analyzing recommender systems. In the second place, we combine all the algorithms together with a ridge regression model and optimize weighting parameters to obtain the best linear combination. This part uses the library Scikit-learn, which is a free and open source Python library for machine learning.
 
 ## Submission
-The output pred.csv is in the data folder and was submitter on [here](https://www.aicrowd.com/challenges/epfl-machine-learning-higgs-2019) where we achieved a score of 0.809
+The output submission_run_script.csv is in the Datasets folder and was submitted on [here](https://www.aicrowd.com/challenges/epfl-ml-recommender-system-2019) where we achieved a score of 1.026
 
 
