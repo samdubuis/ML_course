@@ -80,3 +80,45 @@ COCLUSTERING 2019-12-16 17:49:20.015925
 Best param : {'rmse': {'n_cltr_u': 1, 'n_cltr_i': 1, 'n_epochs': 200}}
 Best score : {'rmse': 1.0110097849483346}
 
+
+Baseline Only 2019-12-19 11:30:25.689210
+{'bsl_options': {'method': ['als', 'sgd']}}Best param : {'rmse': {'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 1.0012049530800418}
+
+
+KNN basic 2019-12-19 11:30:25.689210
+{'k': [150], 'min_k': [3], 'sim_options': {'user_based': [True]}}
+Baseline Only 2019-12-19 11:56:01.121653
+{'bsl_options': {'method': ['als', 'sgd']}}Best param : {'rmse': {'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 1.001277703544938}
+
+
+KNN basic 2019-12-19 11:56:01.121653
+{'k': [150], 'min_k': [3], 'sim_options': {'user_based': [True]}}Best param : {'rmse': {'k': 150, 'min_k': 3, 'sim_options': {'user_based': True}}}
+Best score : {'rmse': 1.0228205728412134}
+
+
+KNN means 2019-12-19 11:56:01.121653
+{'k': [70], 'min_k': [5], 'sim_options': {'user_based': [False]}}Best param : {'rmse': {'k': 70, 'min_k': 5, 'sim_options': {'user_based': False}}}
+Best score : {'rmse': 0.9994839410885564}
+
+
+KNN Baseline 2019-12-19 11:56:01.121653
+{'k': [40], 'min_k': [5], 'sim_options': {'user_based': [False]}, 'bsl_options': {'method': ['als']}}Best param : {'rmse': {'k': 40, 'min_k': 5, 'sim_options': {'user_based': False}, 'bsl_options': {'method': 'als'}}}
+Best score : {'rmse': 0.9993664604634876}
+
+
+SVD 2019-12-19 11:56:01.121653
+{'n_factors': [400], 'n_epochs': [300], 'lr_all': [0.004], 'reg_all': [0.1]}Best param : {'rmse': {'n_factors': 400, 'n_epochs': 300, 'lr_all': 0.004, 'reg_all': 0.1}}
+Best score : {'rmse': 0.9961459305408544}
+
+
+NMF 2019-12-19 11:56:01.121653
+{'n_factors': [300], 'n_epochs': [200]}Best param : {'rmse': {'n_factors': 300, 'n_epochs': 200}}
+Best score : {'rmse': 1.0022832104941384}
+
+
+COCLUSTERING 2019-12-19 11:56:01.121653
+{'n_cltr_u': [1], 'n_cltr_i': [1], 'n_epochs': [200]}Best param : {'rmse': {'n_cltr_u': 1, 'n_cltr_i': 1, 'n_epochs': 200}}
+Best score : {'rmse': 1.0088250214432943}
+

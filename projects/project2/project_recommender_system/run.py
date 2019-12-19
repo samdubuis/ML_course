@@ -41,316 +41,316 @@ print("DATA AND READER ARE READY")
 print("")
 
 
-#############################################################################
-################# TRAINING OF EACH ALGO FOR THE FIRST LAYER #################
-#############################################################################
+# #############################################################################
+# ################# TRAINING OF EACH ALGO FOR THE FIRST LAYER #################
+# #############################################################################
 
-print("TRAINING OF EACH ALGO")
-################# PARAMETERS #################
+# print("TRAINING OF EACH ALGO")
+# ################# PARAMETERS #################
 
-n_jobs = int(input("Value for how many processors to use : (-1 is all, -2 is all except one) "))
-cv=3 # number of fold for the CV of the gridsearch of the parameters
-f=open("results.txt", "a")
+# n_jobs = int(input("Value for how many processors to use : (-1 is all, -2 is all except one) "))
+# cv=5 # number of fold for the CV of the gridsearch of the parameters
+# f=open("results.txt", "a")
 
-'''
-Below are the training for all algorithms tested for this project
-Except SlopeOne which doesn't have any parameters and as such doesn't need a gridsearch done to it
-All algos are based and computed on the same principles 
-- gridsearch with CV of n folds, n described just previously
-- parameters are in a dict
-- parameters, algo, timing, and results are written in a results.txt file so that it can be looked up later on
+# '''
+# Below are the training for all algorithms tested for this project
+# Except SlopeOne which doesn't have any parameters and as such doesn't need a gridsearch done to it
+# All algos are based and computed on the same principles 
+# - gridsearch with CV of n folds, n described just previously
+# - parameters are in a dict
+# - parameters, algo, timing, and results are written in a results.txt file so that it can be looked up later on
 
-When the gridsearch is done, the algo is fitted with the best parameters, those that give the smallest rmse on the 70% data of the original dataset
-finally it is dumped to a local file so it can be reused later on and it frees memory
-'''
+# When the gridsearch is done, the algo is fitted with the best parameters, those that give the smallest rmse on the 70% data of the original dataset
+# finally it is dumped to a local file so it can be reused later on and it frees memory
+# '''
 
-################# Baseline Only #################
-print("")
-print("BASELINE ONLY")
+# ################# Baseline Only #################
+# print("")
+# print("BASELINE ONLY")
 
-baseline_only_param_grid = {
-    'bsl_options' : {
-        'method' : ['als', 'sgd']
-    }
-}
-print("BASELINE ONLY PARAMETERS : ", baseline_only_param_grid)
-f.write("\n")
-f.write("Baseline Only {}\n".format(time))
-f.write(str(baseline_only_param_grid))
+# baseline_only_param_grid = {
+#     'bsl_options' : {
+#         'method' : ['als', 'sgd']
+#     }
+# }
+# print("BASELINE ONLY PARAMETERS : ", baseline_only_param_grid)
+# f.write("\n")
+# f.write("Baseline Only {}\n".format(time))
+# f.write(str(baseline_only_param_grid))
 
-algorithm = BaselineOnly
-gs = model_selection.GridSearchCV(algorithm, baseline_only_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+# algorithm = BaselineOnly
+# gs = model_selection.GridSearchCV(algorithm, baseline_only_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
 
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_baseline_only = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_baseline_only.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_baseline_only = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_baseline_only.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
 
-dump_name = "dump/dump_BaselineOnly"
-dump.dump(dump_name, algo=algo_baseline_only, verbose=1)
-del algo_baseline_only, gs
-
-
-################# KNN Basic #################
-
-print("")
-print("KNN Basic")
-f=open("results.txt", "a")
-
-knn_basic_param_grid = {
-    'k' : [100],
-    'min_k': [3],
-    'sim_options' : {
-        'user_based' : [True, False]
-    }
-}  
-print("KNN BASIC PARAMETERS : ", knn_basic_param_grid)
-f.write("\n")
-f.write("KNN basic {}\n".format(time))
-f.write(str(knn_basic_param_grid))
-
-algorithm = KNNBasic
-gs = model_selection.GridSearchCV(algorithm, knn_basic_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
-
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_knn_basic = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_knn_basic.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
-
-dump_name = "dump/dump_KNN_basic"
-dump.dump(dump_name, algo=algo_knn_basic, verbose=1)
-del algo_knn_basic, gs
+# dump_name = "dump/dump_BaselineOnly"
+# dump.dump(dump_name, algo=algo_baseline_only, verbose=1)
+# del algo_baseline_only, gs
 
 
-################# KNN Means #################
+# ################# KNN Basic #################
 
-print("")
-print("KNN Means")
-f=open("results.txt", "a")
+# print("")
+# print("KNN Basic")
+# f=open("results.txt", "a")
 
-knn_means_param_grid = {
-    'k' : [70],
-    'min_k': [5],
-    'sim_options' : {
-        'user_based' : [False]
-    }
-} 
-print("KNN MEANS PARAMETERS : ", knn_means_param_grid)
-f.write("\n")
-f.write("KNN means {}\n".format(time))
-f.write(str(knn_means_param_grid))
+# knn_basic_param_grid = {
+#     'k' : [150],
+#     'min_k': [3],
+#     'sim_options' : {
+#         'user_based' : [True]
+#     }
+# }  
+# print("KNN BASIC PARAMETERS : ", knn_basic_param_grid)
+# f.write("\n")
+# f.write("KNN basic {}\n".format(time))
+# f.write(str(knn_basic_param_grid))
 
-algorithm = KNNWithMeans
-gs = model_selection.GridSearchCV(algorithm, knn_means_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+# algorithm = KNNBasic
+# gs = model_selection.GridSearchCV(algorithm, knn_basic_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
 
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_knn_means = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_knn_means.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_knn_basic = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_knn_basic.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
 
-dump_name = "dump/dump_KNN_means"
-dump.dump(dump_name, algo=algo_knn_means, verbose=1)
-del algo_knn_means, gs
-
-
-################# KNN Baseline #################
-
-print("")
-print("KNN Baseline")
-f=open("results.txt", "a")
-knn_baseline_param_grid = {
-    'k' : [40],
-    'min_k': [5],
-    'sim_options' : {
-        'user_based' : [False]
-    },
-    'bsl_options' : {
-        'method' : ['als']
-    }
-} 
-print("KNN BASELINE PARAMETERS : ", knn_baseline_param_grid)
-f.write("\n")
-f.write("KNN Baseline {}\n".format(time))
-f.write(str(knn_baseline_param_grid))
-
-algorithm = KNNBaseline
-gs = model_selection.GridSearchCV(algorithm, knn_baseline_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
-
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_knn_baseline = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_knn_baseline.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
-
-dump_name = "dump/dump_KNN_baseline"
-dump.dump(dump_name, algo=algo_knn_baseline, verbose=1)
-del algo_knn_baseline, gs
-
-################# SVD #################
-
-print("")
-print("SVD")
-f=open("results.txt", "a")
-svd_param_grid = {
-    'n_factors' : [300],
-    'n_epochs': [300],
-    'lr_all': [0.004],
-    'reg_all': [0.1]
-}  
-print("SVD PARAMETERS : ", svd_param_grid)
-f.write("\n")
-f.write("SVD {}\n".format(time))
-f.write(str(svd_param_grid))
-
-algorithm = SVD
-gs = model_selection.GridSearchCV(algorithm, svd_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
-
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_svd = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_svd.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
-
-dump_name = "dump/dump_SVD"
-dump.dump(dump_name, algo=algo_svd, verbose=1)
-del algo_svd, gs
-
-################# NMF #################
-
-print("")
-print("NMF")
-f=open("results.txt", "a")
-nmf_param_grid = {
-    'n_factors' : [200],
-    'n_epochs': [200]
-}  
-print("NMF PARAMETERS : ", nmf_param_grid)
-f.write("\n")
-f.write("NMF {}\n".format(time))
-f.write(str(nmf_param_grid))
-
-algorithm = NMF
-gs = model_selection.GridSearchCV(algorithm, nmf_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
-
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_nmf = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_nmf.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
-
-dump_name = "dump/dump_NMF"
-dump.dump(dump_name, algo=algo_nmf, verbose=1)
-del algo_nmf, gs
-
-################# SlopeOne #################
-
-print("")
-print("SLOPEONE")
-
-algo_slopeone = SlopeOne()
-algo_slopeone.fit(data_train_7)
-dump.dump("dump/dump_slopeone", algo=algo_slopeone, verbose=1)
-del algo_slopeone
-
-################# CoClustering #################
+# dump_name = "dump/dump_KNN_basic"
+# dump.dump(dump_name, algo=algo_knn_basic, verbose=1)
+# del algo_knn_basic, gs
 
 
-print("")
-print("CoClustering")
-f=open("results.txt", "a")
-coclustering_param_grid = {
-    'n_cltr_u' : [1],
-    'n_cltr_i': [1],
-    'n_epochs' : [200]
-}  
-print("COCLUSTERING PARAMETERS : ", coclustering_param_grid)
-f.write("\n")
-f.write("COCLUSTERING {}\n".format(time))
-f.write(str(coclustering_param_grid))
+# ################# KNN Means #################
 
-algorithm = CoClustering
-gs = model_selection.GridSearchCV(algorithm, coclustering_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+# print("")
+# print("KNN Means")
+# f=open("results.txt", "a")
 
-print("BEGINNING OF FITTING GRIDSEARCH")
-print("")
-gs.fit(tmp7)
-print("FITTING GRIDSEARCH DONE")
-print("")
-print(gs.best_params)
-print(gs.best_score)
-f.write("Best param : {}\n" .format(gs.best_params))
-f.write("Best score : {}\n" .format(gs.best_score))
-f.write("\n")
-f.close()
-algo_coclustering = gs.best_estimator['rmse']
-print("FITTING OF DATA ON BEST ALGO")
-algo_coclustering.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+# knn_means_param_grid = {
+#     'k' : [70],
+#     'min_k': [5],
+#     'sim_options' : {
+#         'user_based' : [False]
+#     }
+# } 
+# print("KNN MEANS PARAMETERS : ", knn_means_param_grid)
+# f.write("\n")
+# f.write("KNN means {}\n".format(time))
+# f.write(str(knn_means_param_grid))
 
-dump_name = "dump/dump_CoClustering"
-dump.dump(dump_name, algo=algo_coclustering, verbose=1)
-del algo_coclustering, gs
+# algorithm = KNNWithMeans
+# gs = model_selection.GridSearchCV(algorithm, knn_means_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_knn_means = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_knn_means.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+
+# dump_name = "dump/dump_KNN_means"
+# dump.dump(dump_name, algo=algo_knn_means, verbose=1)
+# del algo_knn_means, gs
 
 
-#-------------------------------------------------#-------------------------------------------------#-------------------------------------------------# 
+# ################# KNN Baseline #################
 
-print("FITTING OF ALL ALGOS IS DONE")
+# print("")
+# print("KNN Baseline")
+# f=open("results.txt", "a")
+# knn_baseline_param_grid = {
+#     'k' : [40],
+#     'min_k': [5],
+#     'sim_options' : {
+#         'user_based' : [False]
+#     },
+#     'bsl_options' : {
+#         'method' : ['als']
+#     }
+# } 
+# print("KNN BASELINE PARAMETERS : ", knn_baseline_param_grid)
+# f.write("\n")
+# f.write("KNN Baseline {}\n".format(time))
+# f.write(str(knn_baseline_param_grid))
+
+# algorithm = KNNBaseline
+# gs = model_selection.GridSearchCV(algorithm, knn_baseline_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_knn_baseline = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_knn_baseline.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+
+# dump_name = "dump/dump_KNN_baseline"
+# dump.dump(dump_name, algo=algo_knn_baseline, verbose=1)
+# del algo_knn_baseline, gs
+
+# ################# SVD #################
+
+# print("")
+# print("SVD")
+# f=open("results.txt", "a")
+# svd_param_grid = {
+#     'n_factors' : [400],
+#     'n_epochs': [300],
+#     'lr_all': [0.004],
+#     'reg_all': [0.1]
+# }  
+# print("SVD PARAMETERS : ", svd_param_grid)
+# f.write("\n")
+# f.write("SVD {}\n".format(time))
+# f.write(str(svd_param_grid))
+
+# algorithm = SVD
+# gs = model_selection.GridSearchCV(algorithm, svd_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_svd = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_svd.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+
+# dump_name = "dump/dump_SVD"
+# dump.dump(dump_name, algo=algo_svd, verbose=1)
+# del algo_svd, gs
+
+# ################# NMF #################
+
+# print("")
+# print("NMF")
+# f=open("results.txt", "a")
+# nmf_param_grid = {
+#     'n_factors' : [300],
+#     'n_epochs': [200]
+# }  
+# print("NMF PARAMETERS : ", nmf_param_grid)
+# f.write("\n")
+# f.write("NMF {}\n".format(time))
+# f.write(str(nmf_param_grid))
+
+# algorithm = NMF
+# gs = model_selection.GridSearchCV(algorithm, nmf_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_nmf = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_nmf.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+
+# dump_name = "dump/dump_NMF"
+# dump.dump(dump_name, algo=algo_nmf, verbose=1)
+# del algo_nmf, gs
+
+# ################# SlopeOne #################
+
+# print("")
+# print("SLOPEONE")
+
+# algo_slopeone = SlopeOne()
+# algo_slopeone.fit(data_train_7)
+# dump.dump("dump/dump_slopeone", algo=algo_slopeone, verbose=1)
+# del algo_slopeone
+
+# ################# CoClustering #################
+
+
+# print("")
+# print("CoClustering")
+# f=open("results.txt", "a")
+# coclustering_param_grid = {
+#     'n_cltr_u' : [1],
+#     'n_cltr_i': [1],
+#     'n_epochs' : [200]
+# }  
+# print("COCLUSTERING PARAMETERS : ", coclustering_param_grid)
+# f.write("\n")
+# f.write("COCLUSTERING {}\n".format(time))
+# f.write(str(coclustering_param_grid))
+
+# algorithm = CoClustering
+# gs = model_selection.GridSearchCV(algorithm, coclustering_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+
+# print("BEGINNING OF FITTING GRIDSEARCH")
+# print("")
+# gs.fit(tmp7)
+# print("FITTING GRIDSEARCH DONE")
+# print("")
+# print(gs.best_params)
+# print(gs.best_score)
+# f.write("Best param : {}\n" .format(gs.best_params))
+# f.write("Best score : {}\n" .format(gs.best_score))
+# f.write("\n")
+# f.close()
+# algo_coclustering = gs.best_estimator['rmse']
+# print("FITTING OF DATA ON BEST ALGO")
+# algo_coclustering.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+
+# dump_name = "dump/dump_CoClustering"
+# dump.dump(dump_name, algo=algo_coclustering, verbose=1)
+# del algo_coclustering, gs
+
+
+# #-------------------------------------------------#-------------------------------------------------#-------------------------------------------------# 
+
+# print("FITTING OF ALL ALGOS IS DONE")
 
 
 ################# DATA PROCESSING FOR TESTING THE ALGOS #################
@@ -434,8 +434,8 @@ pred_array=np.vstack(
     array_slopeone,
     array_coclustering]
     )
-pred_array[np.where(pred_array>5)]=5
-pred_array[np.where(pred_array<1)]=1
+# pred_array[np.where(pred_array>5)]=5
+# pred_array[np.where(pred_array<1)]=1
 
 pred_array = pred_array.T
 np.save("npy/pred_array", pred_array)
@@ -497,8 +497,8 @@ X=np.vstack(
     array_slopeone,
     array_coclustering]
     )
-X[np.where(X>5)]=5
-X[np.where(X<1)]=1
+# X[np.where(X>5)]=5
+# X[np.where(X<1)]=1
 
 X = X.T
 
