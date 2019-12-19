@@ -28,8 +28,8 @@ df.item = df.item.str.replace("c", "")
 reader = Reader(rating_scale=(1,5)) 
 
 '''
-We split the pandas df into two sets of 70-30% randomly, that will be used to train once every algo, and the smaller one the ridge regression
-of the second layer
+We split the pandas df into two sets of 70-30% randomly, the first one will be used to train once every algo, 
+and the smaller one for the ridge regression of the second layer
 '''
 df_7, df_3 = train_test_split(df, train_size=0.7, random_state=1) 
 
@@ -79,7 +79,7 @@ f.write("Baseline Only {}\n".format(time))
 f.write(str(baseline_only_param_grid))
 
 algorithm = BaselineOnly
-gs = model_selection.GridSearchCV(algorithm, baseline_only_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+gs = model_selection.GridSearchCV(algorithm, baseline_only_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)
 
 print("BEGINNING OF FITTING GRIDSEARCH")
 print("")
@@ -94,7 +94,7 @@ f.write("\n")
 f.close()
 algo_baseline_only = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_baseline_only.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_baseline_only.fit(data_train_7)
 
 dump_name = "dump/dump_BaselineOnly"
 dump.dump(dump_name, algo=algo_baseline_only, verbose=1)
@@ -120,7 +120,7 @@ f.write("KNN basic {}\n".format(time))
 f.write(str(knn_basic_param_grid))
 
 algorithm = KNNBasic
-gs = model_selection.GridSearchCV(algorithm, knn_basic_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+gs = model_selection.GridSearchCV(algorithm, knn_basic_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)
 
 print("BEGINNING OF FITTING GRIDSEARCH")
 print("")
@@ -135,7 +135,7 @@ f.write("\n")
 f.close()
 algo_knn_basic = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_knn_basic.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_knn_basic.fit(data_train_7)
 
 dump_name = "dump/dump_KNN_basic"
 dump.dump(dump_name, algo=algo_knn_basic, verbose=1)
@@ -161,7 +161,7 @@ f.write("KNN means {}\n".format(time))
 f.write(str(knn_means_param_grid))
 
 algorithm = KNNWithMeans
-gs = model_selection.GridSearchCV(algorithm, knn_means_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+gs = model_selection.GridSearchCV(algorithm, knn_means_param_grid, measures=['rmse'], n_jobs=2, cv=cv, joblib_verbose=100)
 
 print("BEGINNING OF FITTING GRIDSEARCH")
 print("")
@@ -176,7 +176,7 @@ f.write("\n")
 f.close()
 algo_knn_means = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_knn_means.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_knn_means.fit(data_train_7)
 
 dump_name = "dump/dump_KNN_means"
 dump.dump(dump_name, algo=algo_knn_means, verbose=1)
@@ -219,7 +219,7 @@ f.write("\n")
 f.close()
 algo_knn_baseline = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_knn_baseline.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_knn_baseline.fit(data_train_7)
 
 dump_name = "dump/dump_KNN_baseline"
 dump.dump(dump_name, algo=algo_knn_baseline, verbose=1)
@@ -242,7 +242,7 @@ f.write("SVD {}\n".format(time))
 f.write(str(svd_param_grid))
 
 algorithm = SVD
-gs = model_selection.GridSearchCV(algorithm, svd_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+gs = model_selection.GridSearchCV(algorithm, svd_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)
 
 print("BEGINNING OF FITTING GRIDSEARCH")
 print("")
@@ -257,7 +257,7 @@ f.write("\n")
 f.close()
 algo_svd = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_svd.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_svd.fit(data_train_7)
 
 dump_name = "dump/dump_SVD"
 dump.dump(dump_name, algo=algo_svd, verbose=1)
@@ -278,7 +278,7 @@ f.write("NMF {}\n".format(time))
 f.write(str(nmf_param_grid))
 
 algorithm = NMF
-gs = model_selection.GridSearchCV(algorithm, nmf_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+gs = model_selection.GridSearchCV(algorithm, nmf_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)
 
 print("BEGINNING OF FITTING GRIDSEARCH")
 print("")
@@ -293,7 +293,7 @@ f.write("\n")
 f.close()
 algo_nmf = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_nmf.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_nmf.fit(data_train_7)
 
 dump_name = "dump/dump_NMF"
 dump.dump(dump_name, algo=algo_nmf, verbose=1)
@@ -326,7 +326,7 @@ f.write("COCLUSTERING {}\n".format(time))
 f.write(str(coclustering_param_grid))
 
 algorithm = CoClustering
-gs = model_selection.GridSearchCV(algorithm, coclustering_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)  #enlever mae car non utilisé dans le projet pour sauver du temps
+gs = model_selection.GridSearchCV(algorithm, coclustering_param_grid, measures=['rmse'], cv=cv, n_jobs=n_jobs, joblib_verbose=100)
 
 print("BEGINNING OF FITTING GRIDSEARCH")
 print("")
@@ -341,7 +341,7 @@ f.write("\n")
 f.close()
 algo_coclustering = gs.best_estimator['rmse']
 print("FITTING OF DATA ON BEST ALGO")
-algo_coclustering.fit(data_train_7) # ici on va train notre algo sur le dataset complet, sans cv car les paramètres sont optimaux
+algo_coclustering.fit(data_train_7)
 
 dump_name = "dump/dump_CoClustering"
 dump.dump(dump_name, algo=algo_coclustering, verbose=1)
