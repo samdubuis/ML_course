@@ -18,13 +18,15 @@ Finally there are two files displayed at the root of the project and which are t
 ## Execution 
 For this project we coded everything by using Python 3.
 
-Get into the scripts/ folder and launch
+The idea is to get in the code and add more parameters to each algo, so that when it gridsearches it can maybe attain better rmse than we did by letting it run a lot longer and on more efficiement machines.
+Then simply launch :
 ```bash
 python3 run.py
 ```
 
 The input are in the Datasets folder : data_train.csv and sample_submission.csv
-The idea is to get in the code and add more parameters to each algo, so that when it gridsearches it can maybe attain better rmse than we did by letting it run a lot longer and on more efficiement machines.
+
+
 
 We develop our machine learning model in two distinct layers. In the first place, we train a series of prediction algorithms and optimize the parameters of each one in order to minimise the RMSE of the predicted ratings over the test set. This part uses the library Surprise which is a a Python scikit building and analyzing recommender systems. In the second place, we combine all the algorithms together with a ridge regression model and optimize weighting parameters to obtain the best linear combination. This part uses the library Scikit-learn, which is a free and open source Python library for machine learning.
 
