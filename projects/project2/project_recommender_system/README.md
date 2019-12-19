@@ -1,8 +1,8 @@
 # CS-433 Machine Learning Project 2 - Project Recommender
 
 This project presents a machine learning model that aim to predict item recommendations to a database of users. 
-Based on their ratings of several items on a scale of 1 to 5 (no additional information about the movies or users), 
-we combine different prediction algorithms in order to guess such recommendations. 
+Based on the ratings of several items on a scale of 1 to 5 (no additional information about the movies or users), 
+we combine different prediction algorithms in order to guess recommendations for other users. 
 
 ## Content
 In this repository you'll find a few folders.
